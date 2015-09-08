@@ -5,6 +5,8 @@ namespace Communiverse\Genesis\Atoms;
 use Communiverse\Genesis\Atoms\Particles\Proton;
 use Communiverse\Genesis\Atoms\Particles\Electron;
 use Communiverse\Genesis\Atoms\Particles\Neutron;
+use Communiverse\Genesis\Atoms\Series\Series;
+
 /**
  * 
  * @author Steffen Kowalski <sk@traiwi.de>
@@ -34,6 +36,12 @@ abstract class Atom {
 	 * @var string
 	 */
 	protected $symbol;
+	
+	/**
+	 * 
+	 * @var Series
+	 */
+	protected $series;
 	
 	/**
 	 * 
@@ -98,6 +106,14 @@ abstract class Atom {
 	 */
 	public function getSymbol() {
 		return $this->symbol;
+	}
+	
+	/**
+	 * 
+	 * @return \Communiverse\Genesis\Atoms\Series\Series
+	 */
+	public function getSeries() {
+		return $this->series;
 	}
 	
 	/**

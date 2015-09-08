@@ -19,12 +19,46 @@ use Communiverse\Genesis\Atoms\Boron;
 use Communiverse\Genesis\Atoms\Carbon;
 use Communiverse\Genesis\Atoms\Nitrogen;
 use Communiverse\Genesis\Atoms\Oxygen;
+use Communiverse\Genesis\Atoms\Fluorine;
+use Communiverse\Genesis\Atoms\Neon;
+use Communiverse\Genesis\Atoms\Sodium;
+use Communiverse\Genesis\Atoms\Magnesium;
+use Communiverse\Genesis\Atoms\Aluminium;
+use Communiverse\Genesis\Atoms\Silicon;
+use Communiverse\Genesis\Atoms\Phosphorus;
+use Communiverse\Genesis\Atoms\Sulfur;
+use Communiverse\Genesis\Atoms\Chlorine;
+use Communiverse\Genesis\Atoms\Argon;
+use Communiverse\Genesis\Atoms\Potassium;
+use Communiverse\Genesis\Atoms\Calcium;
+use Communiverse\Genesis\Atoms\Scandium;
+use Communiverse\Genesis\Atoms\Titanium;
+use Communiverse\Genesis\Atoms\Vanadium;
+use Communiverse\Genesis\Atoms\Chromium;
+use Communiverse\Genesis\Atoms\Manganese;
+use Communiverse\Genesis\Atoms\Iron;
+use Communiverse\Genesis\Atoms\Cobalt;
+use Communiverse\Genesis\Atoms\Nickel;
+use Communiverse\Genesis\Atoms\Copper;
+use Communiverse\Genesis\Atoms\Zinc;
+use Communiverse\Genesis\Atoms\Gallium;
+use Communiverse\Genesis\Atoms\Germanium;
+use Communiverse\Genesis\Atoms\Arsenic;
+use Communiverse\Genesis\Atoms\Selenium;
+use Communiverse\Genesis\Atoms\Bromine;
+use Communiverse\Genesis\Atoms\Krypton;
+use Communiverse\Genesis\Atoms\Rubidium;
+use Communiverse\Genesis\Atoms\Strontium;
+use Communiverse\Genesis\Atoms\Yttrium;
+use Communiverse\Genesis\Atoms\Zirconium;
+use Communiverse\Genesis\Atoms\Niobium;
+use Communiverse\Genesis\Atoms\Molybdenum;
 
 $proton = new Proton();
 $electron = new Electron();
 $neutron = new Neutron();
 
-$element = new Oxygen($proton, $electron, $neutron);
+$element = new Molybdenum($proton, $electron, $neutron);
 echo "weight of ".$element->getName()." (".$element->getSymbol()."): " . $element->getUnitWeight() . PHP_EOL;
 
 ?>

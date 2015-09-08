@@ -5,7 +5,7 @@ namespace Communiverse\Genesis\Atoms;
 use Communiverse\Genesis\Atoms\Particles\Proton;
 use Communiverse\Genesis\Atoms\Particles\Electron;
 use Communiverse\Genesis\Atoms\Particles\Neutron;
-use Communiverse\Genesis\Atoms\Series\AlkaliMetals;
+use Communiverse\Genesis\Atoms\Series\TransitionMetal;
 
 /**
  * 
@@ -16,7 +16,7 @@ use Communiverse\Genesis\Atoms\Series\AlkaliMetals;
  * @package Communiverse\Genesis\Atoms
  *
  */
-class Lithium extends Atom {
+class Yttrium extends Atom {
 	
 	/**
 	 * 
@@ -27,14 +27,14 @@ class Lithium extends Atom {
 	public function __construct(Proton $proton, Electron $electron, Neutron $neutron) {
 		parent::__construct($proton, $electron, $neutron);
 
-		$this->protons = 3;
-		$this->electrons = 3;
-		$this->neutrons = 4;
+		$this->protons = 39;
+		$this->electrons = 39;
+		$this->neutrons = 50;
 		
-		$this->name = "Lithium";
-		$this->symbol = "Li";
+		$this->name = "Yttrium";
+		$this->symbol = "Y";
 		
-		$this->series = new AlkaliMetals();
+		$this->series = new TransitionMetal();
 	}
 	
 }

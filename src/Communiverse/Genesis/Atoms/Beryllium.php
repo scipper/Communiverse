@@ -5,6 +5,8 @@ namespace Communiverse\Genesis\Atoms;
 use Communiverse\Genesis\Atoms\Particles\Proton;
 use Communiverse\Genesis\Atoms\Particles\Electron;
 use Communiverse\Genesis\Atoms\Particles\Neutron;
+use Communiverse\Genesis\Atoms\Series\AlkalineEarthMetals;
+
 /**
  * 
  * @author Steffen Kowalski <sk@traiwi.de>
@@ -31,6 +33,8 @@ class Beryllium extends Atom {
 		
 		$this->name = "Beryllium";
 		$this->symbol = "Be";
+		
+		$this->series = new AlkalineEarthMetals();
 	}
 	
 }

@@ -16,7 +16,7 @@ use Communiverse\Genesis\Atoms\Series\AlkaliMetals;
  * @package Communiverse\Genesis\Atoms
  *
  */
-class Lithium extends Atom {
+class Sodium extends Atom {
 	
 	/**
 	 * 
@@ -27,12 +27,12 @@ class Lithium extends Atom {
 	public function __construct(Proton $proton, Electron $electron, Neutron $neutron) {
 		parent::__construct($proton, $electron, $neutron);
 
-		$this->protons = 3;
-		$this->electrons = 3;
-		$this->neutrons = 4;
+		$this->protons = 11;
+		$this->electrons = 11;
+		$this->neutrons = 12;
 		
-		$this->name = "Lithium";
-		$this->symbol = "Li";
+		$this->name = "Sodium";
+		$this->symbol = "Na";
 		
 		$this->series = new AlkaliMetals();
 	}
