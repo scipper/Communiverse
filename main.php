@@ -53,12 +53,17 @@ use Communiverse\Genesis\Atoms\Yttrium;
 use Communiverse\Genesis\Atoms\Zirconium;
 use Communiverse\Genesis\Atoms\Niobium;
 use Communiverse\Genesis\Atoms\Molybdenum;
+use Communiverse\Genesis\Atoms\Series\SeriesCollection;
+use Communiverse\Genesis\Atoms\AtomCollection;
 
-$proton = new Proton();
-$electron = new Electron();
-$neutron = new Neutron();
+$ac = new AtomCollection(
+	new Proton(), 
+	new Electron(), 
+	new Neutron(), 
+	new SeriesCollection()
+);
 
-$element = new Molybdenum($proton, $electron, $neutron);
+$element = $ac->get(AtomCollection::MOLYBDENUM);
 echo "weight of ".$element->getName()." (".$element->getSymbol()."): " . $element->getUnitWeight() . PHP_EOL;
 
 ?>

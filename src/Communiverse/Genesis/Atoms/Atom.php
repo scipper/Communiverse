@@ -6,6 +6,7 @@ use Communiverse\Genesis\Atoms\Particles\Proton;
 use Communiverse\Genesis\Atoms\Particles\Electron;
 use Communiverse\Genesis\Atoms\Particles\Neutron;
 use Communiverse\Genesis\Atoms\Series\Series;
+use Communiverse\Genesis\Atoms\Series\SeriesCollection;
 
 /**
  * 
@@ -79,17 +80,19 @@ abstract class Atom {
 	 */
 	protected $neutrons;
 	
-	
+
 	/**
 	 * 
 	 * @param Proton $proton
 	 * @param Electron $electron
 	 * @param Neutron $neutron
+	 * @param SeriesCollection $seriesCollection
 	 */
-	public function __construct(Proton $proton, Electron $electron, Neutron $neutron) {
+	public function __construct(Proton $proton, Electron $electron, Neutron $neutron, SeriesCollection $seriesCollection) {
 		$this->proton = $proton;
 		$this->electron = $electron;
 		$this->neutron = $neutron;
+		$this->series = $seriesCollection->get(0);
 	}
 	
 	/**
