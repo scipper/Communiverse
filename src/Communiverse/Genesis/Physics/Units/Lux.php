@@ -2,10 +2,8 @@
 
 namespace Communiverse\Genesis\Physics\Units;
 
+use Communiverse\Genesis\Physics\Units\SI\Candela;
 use Communiverse\Genesis\Physics\Units\SI\Metre;
-use Communiverse\Genesis\Physics\Units\SI\Kg;
-use Communiverse\Genesis\Physics\Units\SI\Second;
-use Communiverse\Genesis\Physics\Units\SI\Ampere;
 
 /**
  * 
@@ -16,9 +14,9 @@ use Communiverse\Genesis\Physics\Units\SI\Ampere;
  * @package Communiverse\Genesis\Physics\Units
  *
  */
-class Volt extends BaseUnit {
+class Lux extends BaseUnit {
 	
-	const UNIT = "V";
+	const UNIT = "lx";
 	
 	
 	/**
@@ -26,15 +24,11 @@ class Volt extends BaseUnit {
 	 */
 	public function __construct() {
 		$this->numerator = array(
-			new Metre(),
-			new Metre(),
-			new Kg(),
+			new Candela(),
 		);
 		$this->denominator = array(
-			new Second(),
-			new Second(),
-			new Second(),
-			new Ampere(),
+			new Metre(),
+			new Metre(),
 		);
 	}
 	

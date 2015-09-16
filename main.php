@@ -18,6 +18,15 @@ use Communiverse\Genesis\Physics\Units\Joule;
 use Communiverse\Genesis\Physics\Units\Watt;
 use Communiverse\Genesis\Physics\Units\Coulomb;
 use Communiverse\Genesis\Physics\Units\Volt;
+use Communiverse\Genesis\Physics\Units\Farad;
+use Communiverse\Genesis\Physics\Units\Ohm;
+use Communiverse\Genesis\Physics\Units\Siemens;
+use Communiverse\Genesis\Physics\Units\Weber;
+use Communiverse\Genesis\Physics\Units\Tesla;
+use Communiverse\Genesis\Physics\Units\Henry;
+use Communiverse\Genesis\Physics\Units\Lumen;
+use Communiverse\Genesis\Physics\Units\Celsius;
+use Communiverse\Genesis\Physics\Units\Lux;
 
 $ac = new AtomCollection(
 	new Proton(), 
@@ -29,7 +38,7 @@ $ac = new AtomCollection(
 $element = $ac->get(AtomCollection::MOLYBDENUM);
 echo "weight of ".$element->getName()." (".$element->getSymbol()."): " . $element->getUnitWeight() . PHP_EOL;
 
-$second = new Volt();
+$second = new Lux();
 echo "unit of: " . $second->buildUnit() . " (".$second->getUnit().")" . PHP_EOL;
 
 ?>

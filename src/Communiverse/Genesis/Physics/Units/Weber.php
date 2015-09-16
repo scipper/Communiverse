@@ -16,9 +16,9 @@ use Communiverse\Genesis\Physics\Units\SI\Ampere;
  * @package Communiverse\Genesis\Physics\Units
  *
  */
-class Volt extends BaseUnit {
+class Weber extends BaseUnit {
 	
-	const UNIT = "V";
+	const UNIT = "Wb";
 	
 	
 	/**
@@ -31,7 +31,6 @@ class Volt extends BaseUnit {
 			new Kg(),
 		);
 		$this->denominator = array(
-			new Second(),
 			new Second(),
 			new Second(),
 			new Ampere(),
