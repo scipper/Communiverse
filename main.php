@@ -12,26 +12,12 @@ use Communiverse\Genesis\Atoms\Particles\Neutron;
 use Communiverse\Genesis\Atoms\Particles\Proton;
 use Communiverse\Genesis\Atoms\Series\SeriesCollection;
 use Communiverse\Genesis\Atoms\AtomCollection;
-use Communiverse\Genesis\Physics\Units\Newton;
-use Communiverse\Genesis\Physics\Units\Pascal;
-use Communiverse\Genesis\Physics\Units\Joule;
-use Communiverse\Genesis\Physics\Units\Watt;
-use Communiverse\Genesis\Physics\Units\Coulomb;
-use Communiverse\Genesis\Physics\Units\Volt;
-use Communiverse\Genesis\Physics\Units\Farad;
-use Communiverse\Genesis\Physics\Units\Ohm;
-use Communiverse\Genesis\Physics\Units\Siemens;
-use Communiverse\Genesis\Physics\Units\Weber;
-use Communiverse\Genesis\Physics\Units\Tesla;
-use Communiverse\Genesis\Physics\Units\Henry;
-use Communiverse\Genesis\Physics\Units\Lumen;
-use Communiverse\Genesis\Physics\Units\Celsius;
-use Communiverse\Genesis\Physics\Units\Lux;
-use Communiverse\Genesis\Physics\Units\Becquerel;
-use Communiverse\Genesis\Physics\Units\Gray;
-use Communiverse\Genesis\Physics\Units\Sievert;
 use Communiverse\Genesis\Physics\Units\SI\SIUnitCollection;
 use Communiverse\Genesis\Physics\Units\UnitCollection;
+use Communiverse\Tools\Stopwatch;
+
+$sw = new Stopwatch();
+$sw->start();
 
 $ac = new AtomCollection(
 	new Proton(), 
@@ -47,7 +33,10 @@ $uc = new UnitCollection(
 $element = $ac->get(AtomCollection::MOLYBDENUM);
 echo "weight of ".$element->getName()." (".$element->getSymbol()."): " . $element->getUnitWeight() . PHP_EOL;
 
-$unit = new Sievert();
+$unit = $uc->get(UnitCollection::WATT);
 echo "unit of " . $unit->getName() . " (".$unit->getUnit()."): " . $unit->buildUnit() . PHP_EOL;
+
+$sw->end();
+echo "time elapsed: " . $sw->getTimeElapsed() . "ms" . PHP_EOL;
 
 ?>

@@ -25,20 +25,20 @@
  * 
  */
 
-namespace Communiverse\Genesis\Physics\Units\SI;
+namespace Communiverse\Tools;
 
 /**
  * 
  * @author Steffen Kowalski <sk@traiwi.de>
  *
- * @since 12.09.2015
- * @namespace Communiverse\Genesis\Physics\Units\SI
- * @package Communiverse\Genesis\Physics\Units\SI
+ * @since 17.09.2015
+ * @namespace Communiverse\Tools
+ * @package Communiverse\Tools
  *
  */
-class Ampere extends BaseSIUnit {
+class Timer {
 	
-	const UNIT = "A";
+	
 	
 }
 

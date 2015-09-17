@@ -25,20 +25,78 @@
  * 
  */
 
-namespace Communiverse\Genesis\Physics\Units\SI;
+namespace Communiverse\Tools;
 
 /**
  * 
  * @author Steffen Kowalski <sk@traiwi.de>
  *
- * @since 12.09.2015
- * @namespace Communiverse\Genesis\Physics\Units\SI
- * @package Communiverse\Genesis\Physics\Units\SI
+ * @since 17.09.2015
+ * @namespace Communiverse\Tools
+ * @package Communiverse\Tools
  *
  */
-class Ampere extends BaseSIUnit {
+class Stopwatch {
 	
-	const UNIT = "A";
+	/**
+	 * 
+	 * @var float
+	 */
+	protected $start;
+	
+	/**
+	 * 
+	 * @var float
+	 */
+	protected $end;
+	
+	
+	/**
+	 * 
+	 */
+	public function __construct() {
+		$this->start = 0.0;
+		$this->end = 0.0;
+	}
+	
+	/**
+	 * 
+	 * @return float
+	 */
+	public function microtime() {
+		list($usec, $sec) = explode(" ", microtime());
+		return ((float) $usec + (float) $sec);
+	}
+	
+	/**
+	 * 
+	 */
+	public function start() {
+		$this->start = $this->microtime();
+	}
+
+	/**
+	 * 
+	 */
+	public function end() {
+		$this->end = $this->microtime();
+	}
+	
+	/**
+	 * 
+	 * @return float
+	 */
+	public function getTimeElapsed() {
+		return $this->end - $this->start;
+	}
+	
+	/**
+	 * 
+	 */
+	public function reset() {
+		$this->start = 0.0;
+		$this->end = 0.0;
+	}
 	
 }
 
