@@ -13,9 +13,9 @@ use Communiverse\Genesis\Physics\Units\SI\SIUnitCollection;
  * @package Communiverse\Genesis\Physics\Units
  *
  */
-class Farad extends BaseUnit {
+class Gray extends BaseUnit {
 	
-	const UNIT = "F";
+	const UNIT = "Gy";
 	
 	
 	/**
@@ -24,18 +24,12 @@ class Farad extends BaseUnit {
 	 */
 	public function __construct(SIUnitCollection $siuc) {
 		$this->numerator = array(
-			$siuc->get(SIUnitCollection::SECOND),
-			$siuc->get(SIUnitCollection::SECOND),
-			$siuc->get(SIUnitCollection::SECOND),
-			$siuc->get(SIUnitCollection::SECOND),
-			$siuc->get(SIUnitCollection::SECOND),
-			$siuc->get(SIUnitCollection::AMPERE),
-			$siuc->get(SIUnitCollection::AMPERE),
+			$siuc->get(SIUnitCollection::METRE),
+			$siuc->get(SIUnitCollection::METRE),
 		);
 		$this->denominator = array(
-			$siuc->get(SIUnitCollection::METRE),
-			$siuc->get(SIUnitCollection::METRE),
-			$siuc->get(SIUnitCollection::KG),
+			$siuc->get(SIUnitCollection::SECOND),
+			$siuc->get(SIUnitCollection::SECOND),
 		);
 	}
 	

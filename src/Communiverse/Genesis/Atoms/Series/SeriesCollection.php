@@ -57,8 +57,8 @@ class SeriesCollection {
 	 */
 	private function define($series) {
 		if(!array_key_exists($series, $this->series)) {
-			$series = __NAMESPACE__ ."\\".$series;
-			$this->series[$series] = new $series();
+			$class = __NAMESPACE__ ."\\".$series;
+			$this->series[$series] = new $class();
 		}
 		
 		return $this->series[$series];

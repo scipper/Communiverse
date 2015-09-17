@@ -127,8 +127,8 @@ class AtomCollection {
 	 */
 	private function define($atoms) {
 		if(!array_key_exists($atoms, $this->atoms)) {
-			$atoms = __NAMESPACE__ ."\\".$atoms;
-			$this->atoms[$atoms] = new $atoms($this->proton, $this->electron, $this->neutron, $this->sc);
+			$class = __NAMESPACE__ ."\\".$atoms;
+			$this->atoms[$atoms] = new $class($this->proton, $this->electron, $this->neutron, $this->sc);
 		}
 	
 		return $this->atoms[$atoms];

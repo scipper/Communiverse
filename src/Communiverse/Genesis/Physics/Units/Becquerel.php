@@ -13,29 +13,20 @@ use Communiverse\Genesis\Physics\Units\SI\SIUnitCollection;
  * @package Communiverse\Genesis\Physics\Units
  *
  */
-class Farad extends BaseUnit {
+class Becquerel extends BaseUnit {
 	
-	const UNIT = "F";
+	const UNIT = "Bq";
 	
-	
+
 	/**
 	 * 
 	 * @param SIUnitCollection $siuc
 	 */
 	public function __construct(SIUnitCollection $siuc) {
 		$this->numerator = array(
-			$siuc->get(SIUnitCollection::SECOND),
-			$siuc->get(SIUnitCollection::SECOND),
-			$siuc->get(SIUnitCollection::SECOND),
-			$siuc->get(SIUnitCollection::SECOND),
-			$siuc->get(SIUnitCollection::SECOND),
-			$siuc->get(SIUnitCollection::AMPERE),
-			$siuc->get(SIUnitCollection::AMPERE),
 		);
 		$this->denominator = array(
-			$siuc->get(SIUnitCollection::METRE),
-			$siuc->get(SIUnitCollection::METRE),
-			$siuc->get(SIUnitCollection::KG),
+			$siuc->get(SIUnitCollection::SECOND),
 		);
 	}
 	

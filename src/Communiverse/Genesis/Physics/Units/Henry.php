@@ -2,10 +2,7 @@
 
 namespace Communiverse\Genesis\Physics\Units;
 
-use Communiverse\Genesis\Physics\Units\SI\Kg;
-use Communiverse\Genesis\Physics\Units\SI\Metre;
-use Communiverse\Genesis\Physics\Units\SI\Second;
-use Communiverse\Genesis\Physics\Units\SI\Ampere;
+use Communiverse\Genesis\Physics\Units\SI\SIUnitCollection;
 
 /**
  * 
@@ -23,18 +20,19 @@ class Henry extends BaseUnit {
 	
 	/**
 	 * 
+	 * @param SIUnitCollection $siuc
 	 */
-	public function __construct() {
+	public function __construct(SIUnitCollection $siuc) {
 		$this->numerator = array(
-			new Metre(),
-			new Metre(),
-			new Kg(),
+			$siuc->get(SIUnitCollection::METRE),
+			$siuc->get(SIUnitCollection::METRE),
+			$siuc->get(SIUnitCollection::KG),
 		);
 		$this->denominator = array(
-			new Second(),
-			new Second(),
-			new Ampere(),
-			new Ampere(),
+			$siuc->get(SIUnitCollection::SECOND),
+			$siuc->get(SIUnitCollection::SECOND),
+			$siuc->get(SIUnitCollection::AMPERE),
+			$siuc->get(SIUnitCollection::AMPERE),
 		);
 	}
 	

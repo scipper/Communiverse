@@ -44,10 +44,10 @@ abstract class BaseUnit extends BaseSIUnit implements Unit {
 	public function getDenominator() {
 		return $this->denominator;
 	}
-	
+
 	/**
-	 * 
-	 * @return string
+	 * (non-PHPdoc)
+	 * @see \Communiverse\Genesis\Physics\Units\Unit::buildUnit()
 	 */
 	public function buildUnit() {
 		$n = "";

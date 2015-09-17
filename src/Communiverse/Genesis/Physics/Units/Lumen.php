@@ -2,7 +2,7 @@
 
 namespace Communiverse\Genesis\Physics\Units;
 
-use Communiverse\Genesis\Physics\Units\SI\Candela;
+use Communiverse\Genesis\Physics\Units\SI\SIUnitCollection;
 
 /**
  * 
@@ -17,13 +17,14 @@ class Lumen extends BaseUnit {
 	
 	const UNIT = "lm";
 	
-	
+
 	/**
 	 * 
+	 * @param SIUnitCollection $siuc
 	 */
-	public function __construct() {
+	public function __construct(SIUnitCollection $siuc) {
 		$this->numerator = array(
-			new Candela(),
+			$siuc->get(SIUnitCollection::CANDELA),
 		);
 		$this->denominator = array(
 		);

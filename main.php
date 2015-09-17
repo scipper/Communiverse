@@ -27,6 +27,11 @@ use Communiverse\Genesis\Physics\Units\Henry;
 use Communiverse\Genesis\Physics\Units\Lumen;
 use Communiverse\Genesis\Physics\Units\Celsius;
 use Communiverse\Genesis\Physics\Units\Lux;
+use Communiverse\Genesis\Physics\Units\Becquerel;
+use Communiverse\Genesis\Physics\Units\Gray;
+use Communiverse\Genesis\Physics\Units\Sievert;
+use Communiverse\Genesis\Physics\Units\SI\SIUnitCollection;
+use Communiverse\Genesis\Physics\Units\UnitCollection;
 
 $ac = new AtomCollection(
 	new Proton(), 
@@ -35,10 +40,14 @@ $ac = new AtomCollection(
 	new SeriesCollection()
 );
 
+$uc = new UnitCollection(
+	new SIUnitCollection()
+);
+
 $element = $ac->get(AtomCollection::MOLYBDENUM);
 echo "weight of ".$element->getName()." (".$element->getSymbol()."): " . $element->getUnitWeight() . PHP_EOL;
 
-$unit = new Lux();
+$unit = new Sievert();
 echo "unit of " . $unit->getName() . " (".$unit->getUnit()."): " . $unit->buildUnit() . PHP_EOL;
 
 ?>

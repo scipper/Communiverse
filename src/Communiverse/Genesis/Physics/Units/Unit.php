@@ -28,6 +28,12 @@ interface Unit extends SIUnit {
 	 */
 	public function getDenominator();
 	
+	/**
+	 * 
+	 * @return string
+	 */
+	public function buildUnit();
+	
 }
 
 ?>

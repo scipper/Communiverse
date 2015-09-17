@@ -2,8 +2,7 @@
 
 namespace Communiverse\Genesis\Physics\Units;
 
-use Communiverse\Genesis\Physics\Units\SI\Second;
-use Communiverse\Genesis\Physics\Units\SI\Ampere;
+use Communiverse\Genesis\Physics\Units\SI\SIUnitCollection;
 
 /**
  * 
@@ -21,11 +20,12 @@ class Coulomb extends BaseUnit {
 	
 	/**
 	 * 
+	 * @param SIUnitCollection $siuc
 	 */
-	public function __construct() {
+	public function __construct(SIUnitCollection $siuc) {
 		$this->numerator = array(
-			new Second(),
-			new Ampere(),
+			$siuc->get(SIUnitCollection::SECOND),
+			$siuc->get(SIUnitCollection::AMPERE),
 		);
 		$this->denominator = array(
 		);

@@ -2,7 +2,7 @@
 
 namespace Communiverse\Genesis\Physics\Units;
 
-use Communiverse\Genesis\Physics\Units\SI\Kelvin;
+use Communiverse\Genesis\Physics\Units\SI\SIUnitCollection;
 
 /**
  * 
@@ -17,13 +17,14 @@ class Celsius extends BaseUnit {
 	
 	const UNIT = "°C";
 	
-	
+
 	/**
 	 * 
+	 * @param SIUnitCollection $siuc
 	 */
-	public function __construct() {
+	public function __construct(SIUnitCollection $siuc) {
 		$this->numerator = array(
-			new Kelvin(),
+			$siuc->get(SIUnitCollection::KELVIN),
 		);
 		$this->denominator = array(
 		);
