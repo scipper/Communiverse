@@ -29,6 +29,14 @@ abstract class BaseSIUnit implements SIUnit {
 		return static::UNIT;
 	}
 	
+	/**
+	 * (non-PHPdoc)
+	 * @see \Communiverse\Genesis\Physics\Units\SI\SIUnit::getName()
+	 */
+	public function getName() {
+		return get_class($this);
+	}
+	
 }
 
 ?>

@@ -38,7 +38,7 @@ $ac = new AtomCollection(
 $element = $ac->get(AtomCollection::MOLYBDENUM);
 echo "weight of ".$element->getName()." (".$element->getSymbol()."): " . $element->getUnitWeight() . PHP_EOL;
 
-$second = new Lux();
-echo "unit of: " . $second->buildUnit() . " (".$second->getUnit().")" . PHP_EOL;
+$unit = new Lux();
+echo "unit of " . $unit->getName() . " (".$unit->getUnit()."): " . $unit->buildUnit() . PHP_EOL;
 
 ?>

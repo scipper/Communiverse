@@ -19,6 +19,12 @@ interface SIUnit {
 	 */
 	public function getUnit();
 	
+	/**
+	 * 
+	 * @return string
+	 */
+	public function getName();
+	
 }
 
 ?>
