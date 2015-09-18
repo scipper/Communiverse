@@ -15,10 +15,11 @@ use Communiverse\Genesis\Atoms\AtomCollection;
 use Communiverse\Genesis\Physics\Units\SI\SIUnitCollection;
 use Communiverse\Genesis\Physics\Units\UnitCollection;
 use Communiverse\Tools\Stopwatch;
-use Communiverse\Environment\Simpliverse;
+use Communiverse\Environment\BaseCreator;
 use Communiverse\Environment\Influence\InputManager;
 use Communiverse\Environment\Influence\InputEventListener;
 use Communiverse\Environment\Influence\StdInKeys;
+use Communiverse\Environment\Simpliverse;
 
 $sw = new Stopwatch();
 $sw->start();
@@ -46,6 +47,7 @@ $uc = new UnitCollection(
 $creator = new Simpliverse(
 	new InputManager(new InputEventListener(new StdInKeys()))
 );
+$creator->init();
 $creator->run();
 
 ?>

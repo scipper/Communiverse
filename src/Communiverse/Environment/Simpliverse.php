@@ -27,10 +27,6 @@
 
 namespace Communiverse\Environment;
 
-use Communiverse\Tools\Timer;
-use Communiverse\Tools\TimePerFrame;
-use Communiverse\Environment\Influence\InputManager;
-
 /**
  * 
  * @author Steffen Kowalski <sk@traiwi.de>
@@ -40,114 +36,35 @@ use Communiverse\Environment\Influence\InputManager;
  * @package Communiverse\Environment
  *
  */
-class Simpliverse implements Creator {
+class Simpliverse extends BaseCreator {
 	
 	/**
-	 *
-	 * @var boolean
-	 */
-	protected $running;
-	
-	/**
-	 *
+	 * 
 	 * @var float
 	 */
-	protected $speed;
-	
-	/**
-	 *
-	 * @var boolean
-	 */
-	protected $paused;
+	protected $time;
 	
 	/**
 	 * 
-	 * @var InputManager
-	 */
-	protected $inputManager;
-	
-
-	/**
-	 * 
-	 * @param InputManager $inputManager
-	 */
-	public function __construct(InputManager $inputManager) {
-		$this->running = false;
-		$this->paused = false;
-		$this->speed = 1.0;
-		$this->inputManager = $inputManager;
-	}
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see \Communiverse\Environment\Creator::init()
 	 */
 	public function init() {
-		echo "initialised" . PHP_EOL;
+		parent::init();
+		
+		$this->time = 0.0;
 	}
-
+	
 	/**
-	 * (non-PHPdoc)
-	 * @see \Communiverse\Environment\Creator::run()
-	 */
-	public function run() {
-		$this->running = true;
-		
-		$timer = new Timer();
-		
-		while($this->running) {
-			$tpf = new TimePerFrame();
-			do {
-				$timer->start();
-		
-				$this->update($tpf->getFrame());
-		
-				$timer->adjust();
-			} while($tpf->hasFramesLeft($this->speed));
-		}
-	}
-
-	/**
-	 * (non-PHPdoc)
-	 * @see \Communiverse\Environment\Creator::update()
+	 * 
+	 * @param float $tpf
 	 */
 	public function update($tpf) {
-		echo $tpf . PHP_EOL;
-	}
-
-	/**
-	 * (non-PHPdoc)
-	 * @see \Communiverse\Environment\Creator::pause()
-	 */
-	public function pause() {
-		$this->paused = !$this->paused;
-		if($this->paused) {
-			$this->speed = 1.0;
+		parent::update($tpf);
+		
+		if($tpf % 100 == 0) {
+			$this->time += 0.1;
 		}
-	}
-
-	/**
-	 * (non-PHPdoc)
-	 * @see \Communiverse\Environment\Creator::speedUp()
-	 */
-	public function speedUp() {
-		$this->speed += 0.1;
-	}
-
-	/**
-	 * (non-PHPdoc)
-	 * @see \Communiverse\Environment\Creator::speedDown()
-	 */
-	public function speedDown() {
-		$this->speed -= 0.1;
-	}
-
-	/**
-	 * (non-PHPdoc)
-	 * @see \Communiverse\Environment\Creator::stop()
-	 */
-	public function stop() {
-		$this->running = false;
+		
+		echo (number_format($this->time, 1)) . " s\r";
 	}
 	
 }

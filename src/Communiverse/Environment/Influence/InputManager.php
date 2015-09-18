@@ -66,6 +66,7 @@ class InputManager {
 	 */
 	public function addMapping(KeyMapper $key, \Closure $action) {
 		$this->mappings[$key->getKey()] = $action;
+		echo "mapped" . PHP_EOL;
 	}
 	
 	/**
