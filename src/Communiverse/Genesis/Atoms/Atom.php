@@ -48,7 +48,7 @@ abstract class Atom {
 	 * 
 	 * @var float
 	 */
-	const u = 1.660538921E-24;
+	const u = 1.660538921E-27;
 	
 	
 	/**

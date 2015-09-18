@@ -94,6 +94,14 @@ class UnitCollection {
 		
 		return $this->define(self::HERTZ);
 	}
+	
+	/**
+	 * 
+	 * @return \Communiverse\Genesis\Physics\Units\SI\SIUnitCollection
+	 */
+	public function getSI() {
+		return $this->siuc;
+	}
 
 	/**
 	 * 

@@ -15,6 +15,10 @@ use Communiverse\Genesis\Atoms\AtomCollection;
 use Communiverse\Genesis\Physics\Units\SI\SIUnitCollection;
 use Communiverse\Genesis\Physics\Units\UnitCollection;
 use Communiverse\Tools\Stopwatch;
+use Communiverse\Environment\Simpliverse;
+use Communiverse\Environment\Influence\InputManager;
+use Communiverse\Environment\Influence\InputEventListener;
+use Communiverse\Environment\Influence\StdInKeys;
 
 $sw = new Stopwatch();
 $sw->start();
@@ -30,13 +34,18 @@ $uc = new UnitCollection(
 	new SIUnitCollection()
 );
 
-$element = $ac->get(AtomCollection::MOLYBDENUM);
-echo "weight of ".$element->getName()." (".$element->getSymbol()."): " . $element->getUnitWeight() . PHP_EOL;
+// $element = $ac->get(AtomCollection::MOLYBDENUM);
+// echo "weight of ".$element->getName()." (".$element->getSymbol()."): " . $element->getUnitWeight() . PHP_EOL;
 
-$unit = $uc->get(UnitCollection::WATT);
-echo "unit of " . $unit->getName() . " (".$unit->getUnit()."): " . $unit->buildUnit() . PHP_EOL;
+// $unit = $uc->get(UnitCollection::JOULE);
+// echo "unit of " . $unit->getName() . " (".$unit->getUnit()."): " . (method_exists($unit, "buildUnit") ? $unit->buildUnit() : "") . PHP_EOL;
 
-$sw->end();
-echo "time elapsed: " . $sw->getTimeElapsed() . "ms" . PHP_EOL;
+// $sw->end();
+// echo "time elapsed: " . $sw->getTimeElapsed() . "ms" . PHP_EOL;
+
+$creator = new Simpliverse(
+	new InputManager(new InputEventListener(new StdInKeys()))
+);
+$creator->run();
 
 ?>
