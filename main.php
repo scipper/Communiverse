@@ -17,10 +17,10 @@ use Communiverse\Genesis\Physics\Units\UnitCollection;
 use Communiverse\Tools\Stopwatch;
 use Communiverse\Environment\BaseCreator;
 use Communiverse\Environment\Influence\InputManager;
-use Communiverse\Environment\Influence\InputEventListener;
 use Communiverse\Environment\Influence\StdInKeys;
 use Communiverse\Environment\Simpliverse;
 use Communiverse\Tools\Timer;
+use Communiverse\Environment\Influence\StdEventListener;
 
 $sw = new Stopwatch();
 $sw->start();
@@ -45,7 +45,7 @@ $uc = new UnitCollection(
 // $sw->end();
 // echo "time elapsed: " . $sw->getTimeElapsed() . "ms" . PHP_EOL;
 $creator = new Simpliverse(
-	new InputManager(new InputEventListener(new StdInKeys())),
+	new InputManager(new StdEventListener()),
 	new Timer()
 );
 $creator->init();

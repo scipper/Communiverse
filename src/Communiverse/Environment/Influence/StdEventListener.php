@@ -31,35 +31,95 @@ namespace Communiverse\Environment\Influence;
  * 
  * @author Steffen Kowalski <sk@traiwi.de>
  *
- * @since 18.09.2015
+ * @since 19.09.2015
  * @namespace Communiverse\Environment\Influence
  * @package Communiverse\Environment\Influence
  *
  */
-interface InputEventListener {
+class StdEventListener implements InputEventListener {
+	
+	/**
+	 * 
+	 * @var KeyMapper
+	 */
+	protected $key;
+	
+	/**
+	 * 
+	 * @var array
+	 */
+	protected $read;
+	
+	/**
+	 * 
+	 * @var array
+	 */
+	protected $write;
+	
+	/**
+	 * 
+	 * @var array
+	 */
+	protected $except;
+	
+	/**
+	 * 
+	 * @var integer
+	 */
+	protected $streamSelectResult;
+	
+
+	/**
+	 *
+	 */
+	public function __construct() {
+		stream_set_blocking(STDIN, 0);
+		readline_callback_handler_install('', function() { });
+	}
 	
 	/**
 	 * 
 	 * @return boolean
 	 */
-	public function listen();
+	public function listen() {
+		$this->read = array(STDIN);
+		$this->write = NULL;
+		$this->except = NULL;
+		$this->streamSelectResult = stream_select($this->read, $this->write, $this->except, 0);
+		if($this->streamSelectResult && in_array(STDIN, $this->read)) {
+			$c = stream_get_contents(STDIN, 1024);
+			$value = unpack('H*', strtolower($c));
 		
+			$this->setKey(new StdInKeys($value[1]));
+			
+			return true;
+		}
+		
+		return false;
+	}
+	
 	/**
 	 * 
 	 * @param KeyMapper $key
 	 */
-	public function setKey(KeyMapper $key);
+	public function setKey(KeyMapper $key) {
+		$this->key = $key;
+	}
 	
 	/**
 	 * 
 	 * @return integer
 	 */
-	public function getKey();
+	public function getKey() {
+		return $this->key;
+	}
 	
 	/**
 	 * 
 	 */
-	public function reset();
+	public function reset() {
+		$this->key = NULL;
+	}
 	
 }
 
