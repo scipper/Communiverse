@@ -41,7 +41,7 @@ use Communiverse\Environment\Influence\KeyMapper;
  * @package Communiverse\Environment
  *
  */
-class BaseCreator implements Creator {
+abstract class BaseCreator implements Creator {
 	
 	/**
 	 *
@@ -85,12 +85,12 @@ class BaseCreator implements Creator {
 		$this->inputManager = $inputManager;
 		$this->timer = $timer;
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
-	 * @see \Communiverse\Environment\Creator::init()
+	 * @see \Communiverse\Environment\Creator::coreInit()
 	 */
-	public function init() {
+	public function coreInit() {
 		$this->inputManager->addMapping(
 			new StdInKeys(StdInKeys::KEY_Q),
 			function() {
@@ -128,14 +128,14 @@ class BaseCreator implements Creator {
 	 * (non-PHPdoc)
 	 * @see \Communiverse\Environment\Creator::run()
 	 */
-	public function run() {
+	final public function run() {
 		echo "creator started on " . date("D, d.m.Y, H:i:s") . PHP_EOL;
 		
 		$this->running = true;
 		
 		while($this->running) {
 			$this->timer->update();
-			$this->update($this->timer->getElapsed());
+			$this->coreUpdate($this->timer->getElapsed());
 	
 			$this->timer->adjust();
 		}
@@ -143,9 +143,9 @@ class BaseCreator implements Creator {
 
 	/**
 	 * (non-PHPdoc)
-	 * @see \Communiverse\Environment\Creator::update()
+	 * @see \Communiverse\Environment\Creator::coreUpdate()
 	 */
-	public function update($tpf) {
+	public function coreUpdate($tpf) {
 		$this->inputManager->listen($tpf);
 		
 	}

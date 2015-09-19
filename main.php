@@ -21,6 +21,7 @@ use Communiverse\Environment\Influence\StdInKeys;
 use Communiverse\Environment\Simpliverse;
 use Communiverse\Tools\Timer;
 use Communiverse\Environment\Influence\StdEventListener;
+use Communiverse\Environment\Experimental;
 
 $sw = new Stopwatch();
 $sw->start();
@@ -44,11 +45,11 @@ $uc = new UnitCollection(
 
 // $sw->end();
 // echo "time elapsed: " . $sw->getTimeElapsed() . "ms" . PHP_EOL;
-$creator = new Simpliverse(
+$creator = new Experimental(
 	new InputManager(new StdEventListener()),
 	new Timer()
 );
-$creator->init();
+$creator->coreInit();
 $creator->run();
 
 ?>

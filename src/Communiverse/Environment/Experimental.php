@@ -27,54 +27,47 @@
 
 namespace Communiverse\Environment;
 
-use Communiverse\Tools\Timer;
-
 /**
  * 
  * @author Steffen Kowalski <sk@traiwi.de>
  *
- * @since 18.09.2015
+ * @since 19.09.2015
  * @namespace Communiverse\Environment
  * @package Communiverse\Environment
  *
  */
-abstract class Simpliverse extends BaseCreator {
-
+class Experimental extends Simpliverse {
+	
+	/**
+	 * 
+	 * @var float
+	 */
+	protected $time;
+	
+	
 	/**
 	 * (non-PHPdoc)
-	 * @see \Communiverse\Environment\BaseCreator::coreInit()
+	 * @see \Communiverse\Environment\Simpliverse::init()
 	 */
-	final public function coreInit() {
-		parent::coreInit();
-	}
-
-	/**
-	 * (non-PHPdoc)
-	 * @see \Communiverse\Environment\BaseCreator::coreUpdate()
-	 */
-	final public function coreUpdate($tpf) {
-		parent::coreUpdate($tpf);
+	public function init() {
 		
-		$this->update($tpf);
-		$this->render($tpf);
 	}
 	
 	/**
-	 * 
+	 * (non-PHPdoc)
+	 * @see \Communiverse\Environment\Simpliverse::update()
 	 */
-	abstract public function init();
+	public function update($tpf) {
+		$this->time += $tpf;
+	}
 	
 	/**
-	 * 
-	 * @param float $tpf
+	 * (non-PHPdoc)
+	 * @see \Communiverse\Environment\Simpliverse::render()
 	 */
-	abstract public function update($tpf);
-	
-	/**
-	 * 
-	 * @param float $tpf
-	 */
-	abstract public function render($tpf);
+	public function render($tpf) {
+		echo number_format($this->time, 1) . " s\r";		
+	}
 	
 }
 

@@ -43,7 +43,7 @@ interface Creator {
 	/**
 	 * 
 	 */
-	public function init();
+	public function coreInit();
 	
 	/**
 	 * 
@@ -54,7 +54,7 @@ interface Creator {
 	 * 
 	 * @param float $tpf
 	 */
-	public function update($tpf);
+	public function coreUpdate($tpf);
 	
 	/**
 	 * 

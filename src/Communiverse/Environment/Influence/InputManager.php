@@ -28,6 +28,7 @@
 namespace Communiverse\Environment\Influence;
 
 use Communiverse\Tools\Timer;
+
 /**
  * 
  * @author Steffen Kowalski <sk@traiwi.de>
