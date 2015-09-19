@@ -27,6 +27,7 @@
 
 namespace Communiverse\Environment;
 
+use Communiverse\Environment\Influence\StdInKeys;
 /**
  * 
  * @author Steffen Kowalski <sk@traiwi.de>
@@ -50,7 +51,13 @@ class Experimental extends Simpliverse {
 	 * @see \Communiverse\Environment\Simpliverse::init()
 	 */
 	public function init() {
-		
+		$this->inputManager->addMapping(
+			new StdInKeys(StdInKeys::KEY_M),
+			function() {
+				$this->massSpeedUp();
+				echo "\nwarp speed activated!" . PHP_EOL;
+			}	
+		);
 	}
 	
 	/**
@@ -58,7 +65,7 @@ class Experimental extends Simpliverse {
 	 * @see \Communiverse\Environment\Simpliverse::update()
 	 */
 	public function update($tpf) {
-		$this->time += $tpf;
+		$this->time += $tpf * $this->speed;
 	}
 	
 	/**
@@ -67,6 +74,13 @@ class Experimental extends Simpliverse {
 	 */
 	public function render($tpf) {
 		echo number_format($this->time, 1) . " s\r";		
+	}
+	
+	/**
+	 * 
+	 */
+	public function massSpeedUp() {
+		$this->speed = 31536000;
 	}
 	
 }

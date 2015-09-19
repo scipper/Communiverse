@@ -94,7 +94,7 @@ abstract class BaseCreator implements Creator {
 		$this->inputManager->addMapping(
 			new StdInKeys(StdInKeys::KEY_Q),
 			function() {
-				echo "end of this creator..." . PHP_EOL;
+				echo "\nend of this creator..." . PHP_EOL;
 				$this->stop();
 			}	
 		);
@@ -103,7 +103,7 @@ abstract class BaseCreator implements Creator {
 			new StdInKeys(StdInKeys::KEY_UP),
 			function() {
 				$this->speedUp();
-				echo "speed up. speed is now " . $this->speed . PHP_EOL;
+				echo "\nspeed up. speed is now " . $this->speed . PHP_EOL;
 			}	
 		);
 		
@@ -111,7 +111,7 @@ abstract class BaseCreator implements Creator {
 			new StdInKeys(StdInKeys::KEY_DOWN),
 			function() {
 				$this->speedDown();
-				echo "speed down. speed is now " . $this->speed . PHP_EOL;
+				echo "\nspeed down. speed is now " . $this->speed . PHP_EOL;
 			}	
 		);
 		
@@ -119,7 +119,7 @@ abstract class BaseCreator implements Creator {
 			new StdInKeys(StdInKeys::KEY_P),
 			function() {
 				$this->pause();
-				echo "pause" . PHP_EOL;
+				echo "\npause" . PHP_EOL;
 			}	
 		);
 	}

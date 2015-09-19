@@ -46,6 +46,7 @@ abstract class Simpliverse extends BaseCreator {
 	 */
 	final public function coreInit() {
 		parent::coreInit();
+		$this->init();
 	}
 
 	/**
