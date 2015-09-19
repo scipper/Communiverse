@@ -27,6 +27,8 @@
 
 namespace Communiverse\Environment;
 
+use Communiverse\Tools\Timer;
+
 /**
  * 
  * @author Steffen Kowalski <sk@traiwi.de>
@@ -52,19 +54,17 @@ class Simpliverse extends BaseCreator {
 		
 		$this->time = 0.0;
 	}
-	
+
 	/**
-	 * 
-	 * @param float $tpf
+	 * (non-PHPdoc)
+	 * @see \Communiverse\Environment\BaseCreator::update()
 	 */
 	public function update($tpf) {
 		parent::update($tpf);
 		
-		if($tpf % 100 == 0) {
-			$this->time += 0.1;
-		}
+		$this->time += $tpf;
 		
-		echo (number_format($this->time, 1)) . " s\r";
+		echo (number_format($this->time, 1)) . " s - " . date("s") . "\r";
 	}
 	
 }

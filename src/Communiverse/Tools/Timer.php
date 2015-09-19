@@ -42,14 +42,28 @@ class Timer {
 	 *
 	 * @var float
 	 */
-	private $start;
+	private $currentTime;
+	
+	/**
+	 * 
+	 * @var float
+	 */
+	private $lastTime;
+	
+	/**
+	 * 
+	 * @var float
+	 */
+	private $elapsed;
 	
 	
 	/**
 	 *
 	 */
 	public function __construct() {
-		$this->start = 0.0;
+		$this->currentTime = 0.0;
+		$this->lastTime = $this->microtime();
+		$this->elapsed = 0.0;
 	}
 	
 	/**
@@ -63,17 +77,27 @@ class Timer {
 	/**
 	 *
 	 */
-	public function start() {
-		$this->start = $this->microtime();
+	public function update() {
+		$this->currentTime = $this->microtime();
+		$this->elapsed = $this->currentTime - $this->lastTime;
+		$this->lastTime = $this->currentTime;
+	}
+
+	/**
+	 * 
+	 * @return float
+	 */
+	public function getElapsed() {
+		return $this->elapsed;
 	}
 	
 	/**
-	 *
+	 * 
 	 */
 	public function adjust() {
-		$end = $this->microtime();
-		if(($end - $this->start) < 0.001) {
-			usleep(1000-($end-$this->start));
+		$frameTicks = $this->getElapsed();
+		if($frameTicks < 1) {
+			usleep(1000 - $frameTicks);
 		}
 	}
 	

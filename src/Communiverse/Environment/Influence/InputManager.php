@@ -27,6 +27,7 @@
 
 namespace Communiverse\Environment\Influence;
 
+use Communiverse\Tools\Timer;
 /**
  * 
  * @author Steffen Kowalski <sk@traiwi.de>
@@ -66,7 +67,6 @@ class InputManager {
 	 */
 	public function addMapping(KeyMapper $key, \Closure $action) {
 		$this->mappings[$key->getKey()] = $action;
-		echo "mapped" . PHP_EOL;
 	}
 	
 	/**
@@ -117,7 +117,7 @@ class InputManager {
 	 */
 	private function delegateEvent($mapping, $tpf) {
 		if(!is_null($mapping)) {
-			$mapping();
+			$mapping($tpf);
 		}
 		
 		$this->inputEventListener->reset();

@@ -28,7 +28,6 @@
 namespace Communiverse\Environment;
 
 use Communiverse\Tools\Timer;
-use Communiverse\Tools\TimePerFrame;
 use Communiverse\Environment\Influence\InputManager;
 use Communiverse\Environment\Influence\StdInKeys;
 use Communiverse\Environment\Influence\KeyMapper;
@@ -48,7 +47,7 @@ class BaseCreator implements Creator {
 	 *
 	 * @var boolean
 	 */
-	protected $running;
+	private $running;
 	
 	/**
 	 *
@@ -68,16 +67,23 @@ class BaseCreator implements Creator {
 	 */
 	protected $inputManager;
 	
+	/**
+	 * 
+	 * @var Timer
+	 */
+	protected $timer;
+	
 
 	/**
 	 * 
 	 * @param InputManager $inputManager
 	 */
-	public function __construct(InputManager $inputManager) {
+	public function __construct(InputManager $inputManager, Timer $timer) {
 		$this->running = false;
 		$this->paused = false;
 		$this->speed = 1.0;
 		$this->inputManager = $inputManager;
+		$this->timer = $timer;
 	}
 	
 	/**
@@ -85,8 +91,6 @@ class BaseCreator implements Creator {
 	 * @see \Communiverse\Environment\Creator::init()
 	 */
 	public function init() {
-		echo "initialised" . PHP_EOL;
-		
 		$this->inputManager->addMapping(
 			new StdInKeys(StdInKeys::KEY_Q),
 			function() {
@@ -98,16 +102,24 @@ class BaseCreator implements Creator {
 		$this->inputManager->addMapping(
 			new StdInKeys(StdInKeys::KEY_UP),
 			function() {
-				echo "speed up. speed is now " . $this->speed . PHP_EOL;
 				$this->speedUp();
+				echo "speed up. speed is now " . $this->speed . PHP_EOL;
 			}	
 		);
 		
 		$this->inputManager->addMapping(
 			new StdInKeys(StdInKeys::KEY_DOWN),
 			function() {
-				echo "speed down. speed is now " . $this->speed . PHP_EOL;
 				$this->speedDown();
+				echo "speed down. speed is now " . $this->speed . PHP_EOL;
+			}	
+		);
+		
+		$this->inputManager->addMapping(
+			new StdInKeys(StdInKeys::KEY_P),
+			function() {
+				$this->pause();
+				echo "pause" . PHP_EOL;
 			}	
 		);
 	}
@@ -117,19 +129,15 @@ class BaseCreator implements Creator {
 	 * @see \Communiverse\Environment\Creator::run()
 	 */
 	public function run() {
+		echo "creator started on " . date("D, d.m.Y, H:i:s") . PHP_EOL;
+		
 		$this->running = true;
 		
-		$timer = new Timer();
-		
 		while($this->running) {
-			$tpf = new TimePerFrame();
-			do {
-				$timer->start();
-		
-				$this->update($tpf->getFrame());
-		
-				$timer->adjust();
-			} while($tpf->hasFramesLeft($this->speed));
+			$this->timer->update();
+			$this->update($this->timer->getElapsed());
+	
+			$this->timer->adjust();
 		}
 	}
 

@@ -20,6 +20,7 @@ use Communiverse\Environment\Influence\InputManager;
 use Communiverse\Environment\Influence\InputEventListener;
 use Communiverse\Environment\Influence\StdInKeys;
 use Communiverse\Environment\Simpliverse;
+use Communiverse\Tools\Timer;
 
 $sw = new Stopwatch();
 $sw->start();
@@ -43,9 +44,9 @@ $uc = new UnitCollection(
 
 // $sw->end();
 // echo "time elapsed: " . $sw->getTimeElapsed() . "ms" . PHP_EOL;
-
 $creator = new Simpliverse(
-	new InputManager(new InputEventListener(new StdInKeys()))
+	new InputManager(new InputEventListener(new StdInKeys())),
+	new Timer()
 );
 $creator->init();
 $creator->run();
