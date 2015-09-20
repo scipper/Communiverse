@@ -3,8 +3,8 @@ let's see where it goes :)
 
 ----
 How to use:
- - clone to your local webroot (/var/www/, /srv/ or what ever)
- - change directory to /what/ever/Communiverse
+ - clone to where ever
+ - change directory to /where/ever/Communiverse
  - run: php main.php
 
 ----
