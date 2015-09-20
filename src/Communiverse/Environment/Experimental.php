@@ -40,17 +40,14 @@ use Communiverse\Environment\Influence\StdInKeys;
 class Experimental extends Simpliverse {
 	
 	/**
-	 * 
-	 * @var float
-	 */
-	protected $time;
-	
-	
-	/**
 	 * (non-PHPdoc)
 	 * @see \Communiverse\Environment\Simpliverse::init()
 	 */
 	public function init() {
+		system("clear");
+		
+		$this->printStarChart();
+		
 		$this->inputManager->addMapping(
 			new StdInKeys(StdInKeys::KEY_M),
 			function() {
@@ -65,7 +62,7 @@ class Experimental extends Simpliverse {
 	 * @see \Communiverse\Environment\Simpliverse::update()
 	 */
 	public function update($tpf) {
-		$this->time += $tpf * $this->speed;
+		$this->runtime += $tpf * $this->speed;
 	}
 	
 	/**
@@ -73,7 +70,7 @@ class Experimental extends Simpliverse {
 	 * @see \Communiverse\Environment\Simpliverse::render()
 	 */
 	public function render($tpf) {
-		echo number_format($this->time, 1) . " s\r";		
+		echo number_format($this->runtime, 1) . " s (time travelled in years: " . number_format(($this->runtime / 31536000), 2) . ")\r";		
 	}
 	
 	/**
@@ -81,6 +78,23 @@ class Experimental extends Simpliverse {
 	 */
 	public function massSpeedUp() {
 		$this->speed = 31536000;
+	}
+	
+	/**
+	 * 
+	 */
+	public function printStarChart() {
+		for($i = 0; $i < 10000; $i++) {
+			if(rand() % 15 == 0) {
+				echo ".";
+			} elseif(rand() % 100 == 0) {
+				echo "°";
+			} else {
+		
+			}
+			echo " ";
+		}
+		echo PHP_EOL;
 	}
 	
 }

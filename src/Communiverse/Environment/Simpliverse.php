@@ -56,7 +56,9 @@ abstract class Simpliverse extends BaseCreator {
 	final public function coreUpdate($tpf) {
 		parent::coreUpdate($tpf);
 		
-		$this->update($tpf);
+		if(!$this->paused) {
+			$this->update($tpf);
+		}
 		$this->render($tpf);
 	}
 	

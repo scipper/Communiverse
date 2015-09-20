@@ -113,10 +113,10 @@ class InputManager {
 	
 	/**
 	 * 
-	 * @param string $mapping
+	 * @param \Closure|NULL $mapping
 	 * @param float $tpf
 	 */
-	private function delegateEvent(\Closure $mapping, $tpf) {
+	private function delegateEvent($mapping, $tpf) {
 		if(!is_null($mapping)) {
 			$mapping($tpf);
 		}

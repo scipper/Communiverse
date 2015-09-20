@@ -73,6 +73,24 @@ abstract class BaseCreator implements Creator {
 	 */
 	protected $timer;
 	
+	/**
+	 * 
+	 * @var \DateTime
+	 */
+	protected $starttime;
+	
+	/**
+	 *
+	 * @var float
+	 */
+	protected $runtime;
+	
+	/**
+	 * 
+	 * @var \DateTime
+	 */
+	protected $endtime;
+	
 
 	/**
 	 * 
@@ -82,6 +100,8 @@ abstract class BaseCreator implements Creator {
 		$this->running = false;
 		$this->paused = false;
 		$this->speed = 1.0;
+		$this->starttime = new \DateTime("now");
+		$this->endtime = new \DateTime("now");
 		$this->inputManager = $inputManager;
 		$this->timer = $timer;
 	}
@@ -94,7 +114,6 @@ abstract class BaseCreator implements Creator {
 		$this->inputManager->addMapping(
 			new StdInKeys(StdInKeys::KEY_Q),
 			function() {
-				echo "\nend of this creator..." . PHP_EOL;
 				$this->stop();
 			}	
 		);
@@ -129,7 +148,8 @@ abstract class BaseCreator implements Creator {
 	 * @see \Communiverse\Environment\Creator::run()
 	 */
 	final public function run() {
-		echo "creator started on " . date("D, d.m.Y, H:i:s") . PHP_EOL;
+		$this->starttime->setTimestamp(time());
+		echo "creator started on " . $this->starttime->format("D, d.m.Y, H:i:s") . PHP_EOL;
 		
 		$this->running = true;
 		
@@ -185,6 +205,10 @@ abstract class BaseCreator implements Creator {
 	 */
 	public function stop() {
 		$this->running = false;
+		
+		$this->endtime->setTimestamp($this->starttime->getTimestamp() + $this->runtime);
+		
+		echo "\nend of this creator on " . $this->endtime->format("D, d.m.Y, H:i:s") . PHP_EOL;
 	}
 	
 }
