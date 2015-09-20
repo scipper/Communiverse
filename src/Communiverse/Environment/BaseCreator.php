@@ -153,6 +153,7 @@ abstract class BaseCreator implements Creator {
 		
 		while($this->running) {
 			$this->timer->update();
+			
 			$this->coreUpdate($this->timer->getElapsed());
 	
 			$this->timer->adjust();
