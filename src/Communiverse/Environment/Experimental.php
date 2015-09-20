@@ -28,6 +28,7 @@
 namespace Communiverse\Environment;
 
 use Communiverse\Environment\Influence\StdInKeys;
+use Communiverse\Tools\Colorizer;
 /**
  * 
  * @author Steffen Kowalski <sk@traiwi.de>
@@ -84,11 +85,21 @@ class Experimental extends Simpliverse {
 	 * 
 	 */
 	public function printStarChart() {
+		$colorizer = new Colorizer();
 		for($i = 0; $i < 10000; $i++) {
 			if(rand() % 15 == 0) {
-				echo ".";
+				if(rand() % 9 == 0) {
+					echo $colorizer->getColoredString(".", Colorizer::FG_BLUE);
+				} else {
+					echo ".";
+				}
 			} elseif(rand() % 100 == 0) {
-				echo "°";
+				if(rand() % 10 == 0) {
+					echo $colorizer->getColoredString("°", Colorizer::FG_BLUE);
+				} else {
+					echo $colorizer->getColoredString("°", Colorizer::FG_YELLOW);
+				}
+				
 			} else {
 		
 			}
