@@ -3,7 +3,7 @@ let's see where it goes :)
 
 ----
 How to use:
- - checkout to your local webroot (/var/www/, /srv/ or what ever)
+ - clone to your local webroot (/var/www/, /srv/ or what ever)
  - change directory to /what/ever/Communiverse
  - run: php main.php
 
