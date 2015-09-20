@@ -1,6 +1,13 @@
-# waitforit
+# Communiverse
 let's see where it goes :)
 
+----
+How to use:
+ - clone to where ever
+ - change directory to /where/ever/Communiverse
+ - run: php main.php
+
+----
 
 so far, do homage to http://www.periodictableontheweb.com/
 
