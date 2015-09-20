@@ -29,7 +29,7 @@ namespace Communiverse\Tools;
 
 /**
  * 
- * @author Steffen Kowalski <sk@traiwi.de>
+ * @author Steffen Kowalski <scipper@myscipper.de>
  *
  * @since 17.09.2015
  * @namespace Communiverse\Tools

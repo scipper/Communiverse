@@ -29,7 +29,7 @@ namespace Communiverse\Genesis\Physics\Units\SI;
 
 /**
  * 
- * @author Steffen Kowalski <sk@traiwi.de>
+ * @author Steffen Kowalski <scipper@myscipper.de>
  *
  * @since 13.09.2015
  * @namespace Communiverse\Genesis\Physics\Units\SI

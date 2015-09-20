@@ -31,7 +31,7 @@ use Communiverse\Genesis\Physics\Units\SI\SIUnitCollection;
 
 /**
  * 
- * @author Steffen Kowalski <sk@traiwi.de>
+ * @author Steffen Kowalski <scipper@myscipper.de>
  *
  * @since 12.09.2015
  * @namespace Communiverse\Genesis\Physics\Units

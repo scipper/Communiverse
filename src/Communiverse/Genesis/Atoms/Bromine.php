@@ -35,7 +35,7 @@ use Communiverse\Genesis\Atoms\Series\SeriesCollection;
 
 /**
  * 
- * @author Steffen Kowalski <sk@traiwi.de>
+ * @author Steffen Kowalski <scipper@myscipper.de>
  *
  * @since 07.09.2015
  * @namespace Communiverse\Genesis\Atoms

@@ -31,7 +31,7 @@ use Communiverse\Tools\Timer;
 
 /**
  * 
- * @author Steffen Kowalski <sk@traiwi.de>
+ * @author Steffen Kowalski <scipper@myscipper.de>
  *
  * @since 18.09.2015
  * @namespace Communiverse\Environment\Influence

@@ -31,7 +31,7 @@ use Communiverse\Environment\Influence\StdInKeys;
 use Communiverse\Tools\Colorizer;
 /**
  * 
- * @author Steffen Kowalski <sk@traiwi.de>
+ * @author Steffen Kowalski <scipper@myscipper.de>
  *
  * @since 19.09.2015
  * @namespace Communiverse\Environment
@@ -64,6 +64,7 @@ class Experimental extends Simpliverse {
 	 */
 	public function update($tpf) {
 		$this->runtime += $tpf * $this->speed;
+		$this->stop();
 	}
 	
 	/**

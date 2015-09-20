@@ -29,7 +29,7 @@ namespace Communiverse\Genesis\Atoms\Series;
 
 /**
  * 
- * @author Steffen Kowalski <sk@traiwi.de>
+ * @author Steffen Kowalski <scipper@myscipper.de>
  *
  * @since 09.09.2015
  * @namespace Communiverse\Genesis\Atoms\Series

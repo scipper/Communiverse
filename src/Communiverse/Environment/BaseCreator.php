@@ -34,7 +34,7 @@ use Communiverse\Environment\Influence\KeyMapper;
 
 /**
  * 
- * @author Steffen Kowalski <sk@traiwi.de>
+ * @author Steffen Kowalski <scipper@myscipper.de>
  *
  * @since 18.09.2015
  * @namespace Communiverse\Environment
@@ -122,7 +122,6 @@ abstract class BaseCreator implements Creator {
 			new StdInKeys(StdInKeys::KEY_UP),
 			function() {
 				$this->speedUp();
-				echo "\nspeed up. speed is now " . $this->speed . PHP_EOL;
 			}	
 		);
 		
@@ -130,7 +129,6 @@ abstract class BaseCreator implements Creator {
 			new StdInKeys(StdInKeys::KEY_DOWN),
 			function() {
 				$this->speedDown();
-				echo "\nspeed down. speed is now " . $this->speed . PHP_EOL;
 			}	
 		);
 		
@@ -138,7 +136,6 @@ abstract class BaseCreator implements Creator {
 			new StdInKeys(StdInKeys::KEY_P),
 			function() {
 				$this->pause();
-				echo "\npause" . PHP_EOL;
 			}	
 		);
 	}
@@ -178,6 +175,9 @@ abstract class BaseCreator implements Creator {
 		$this->paused = !$this->paused;
 		if($this->paused) {
 			$this->speed = 1.0;
+			echo "\npaused" . PHP_EOL;
+		} else {
+			echo "\nunpaused" . PHP_EOL;
 		}
 	}
 
@@ -187,6 +187,7 @@ abstract class BaseCreator implements Creator {
 	 */
 	public function speedUp() {
 		$this->speed++;
+		echo "\nspeed up. speed is now " . $this->speed . PHP_EOL;
 	}
 
 	/**
@@ -197,6 +198,7 @@ abstract class BaseCreator implements Creator {
 		if($this->speed > 1) {
 			$this->speed--;
 		}
+		echo "\nspeed down. speed is now " . $this->speed . PHP_EOL;
 	}
 
 	/**
