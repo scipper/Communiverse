@@ -63,8 +63,7 @@ class Experimental extends Simpliverse {
 	 * @see \Communiverse\Environment\Simpliverse::update()
 	 */
 	public function update($tpf) {
-		$this->runtime += $tpf * $this->speed;
-		$this->stop();
+		
 	}
 	
 	/**
@@ -79,7 +78,11 @@ class Experimental extends Simpliverse {
 	 * 
 	 */
 	public function massSpeedUp() {
-		$this->speed = 31536000;
+		if($this->speed > 0) {
+			$this->speed = 31536000;
+		} else {
+			$this->speed -= 31536000;
+		}	
 	}
 	
 	/**
@@ -94,19 +97,20 @@ class Experimental extends Simpliverse {
 				if(rand() % 9 == 0) {
 					echo $colorizer->getColoredString(".", Colorizer::FG_BLUE);
 				} else {
-					echo ".";
+					echo $colorizer->getColoredString(".", NULL);
 				}
 			} elseif(rand() % 100 == 0) {
 				if(rand() % 10 == 0) {
-					echo $colorizer->getColoredString("°", Colorizer::FG_BLUE);
+					echo $colorizer->getColoredString("☀", Colorizer::FG_LIGHT_BLUE);
+				} elseif(rand() % 5 == 0) {
+					echo $colorizer->getColoredString("☀", Colorizer::FG_RED);
 				} else {
-					echo $colorizer->getColoredString("°", Colorizer::FG_YELLOW);
+					echo $colorizer->getColoredString("☀", Colorizer::FG_YELLOW);
 				}
 				
 			} else {
-		
+				echo $colorizer->getColoredString(" ");
 			}
-			echo " ";
 		}
 		echo PHP_EOL;
 	}

@@ -98,12 +98,13 @@ abstract class BaseCreator implements Creator {
 	 */
 	public function __construct(InputManager $inputManager, Timer $timer) {
 		$this->running = false;
-		$this->paused = false;
 		$this->speed = 1.0;
-		$this->starttime = new \DateTime("now");
-		$this->endtime = new \DateTime("now");
+		$this->paused = false;
 		$this->inputManager = $inputManager;
 		$this->timer = $timer;
+		$this->starttime = new \DateTime("now");
+		$this->runtime = 0.0;
+		$this->endtime = new \DateTime("now");
 	}
 
 	/**
@@ -165,6 +166,8 @@ abstract class BaseCreator implements Creator {
 	public function coreUpdate($tpf) {
 		$this->inputManager->listen($tpf);
 		
+		$this->runtime += $tpf * $this->speed;
+		
 	}
 
 	/**
@@ -195,9 +198,9 @@ abstract class BaseCreator implements Creator {
 	 * @see \Communiverse\Environment\Creator::speedDown()
 	 */
 	public function speedDown() {
-		if($this->speed > 1) {
+// 		if($this->speed > 1) {
 			$this->speed--;
-		}
+// 		}
 		echo "\nspeed down. speed is now " . $this->speed . PHP_EOL;
 	}
 
