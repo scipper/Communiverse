@@ -50,6 +50,24 @@ interface SIUnit {
 	 */
 	public function getName();
 	
+	/**
+	 * 
+	 * @return array[SIUnit]
+	 */
+	public function getNumerator();
+	
+	/**
+	 *
+	 * @return array[SIUnit]
+	 */
+	public function getDenominator();
+		
+	/**
+	 * 
+	 * @return string
+	 */
+	public function buildUnit();
+	
 }
 
 ?>

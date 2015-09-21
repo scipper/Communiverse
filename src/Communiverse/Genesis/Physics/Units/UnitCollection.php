@@ -45,6 +45,7 @@ class UnitCollection {
 	const COULOMB = "Coulomb";
 	const FARAD = "Farad";
 	const GRAY = "Gray";
+	const GRAVITATION = "Gravitation";
 	const HENRY = "Henry";
 	const HERTZ = "Hertz";
 	const JOULE = "Joule";

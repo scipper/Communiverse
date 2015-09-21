@@ -25,21 +25,19 @@
  * 
  */
 
-namespace Communiverse\Genesis\Physics\Units;
-
-use Communiverse\Genesis\Physics\Units\SI\SIUnit;
+namespace Communiverse\Genesis\Physics;
 
 /**
  * 
  * @author Steffen Kowalski <scipper@myscipper.de>
  *
  * @since 12.09.2015
- * @namespace Communiverse\Genesis\Physics\Units
- * @package Communiverse\Genesis\Physics\Units
+ * @namespace Communiverse\Genesis\Physics
+ * @package Communiverse\Genesis\Physics
  *
  */
-interface Unit extends SIUnit {
-
+class Constants {
+	
 	
 	
 }

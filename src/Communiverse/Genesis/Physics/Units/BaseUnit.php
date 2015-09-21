@@ -53,10 +53,10 @@ abstract class BaseUnit extends BaseSIUnit implements Unit {
 	 */
 	protected $denominator;
 	
-	
+
 	/**
 	 * (non-PHPdoc)
-	 * @see \Communiverse\Genesis\Physics\Units\Unit::getNumerator()
+	 * @see \Communiverse\Genesis\Physics\Units\SI\BaseSIUnit::getNumerator()
 	 */
 	public function getNumerator() {
 		return $this->numerator;
@@ -64,15 +64,15 @@ abstract class BaseUnit extends BaseSIUnit implements Unit {
 
 	/**
 	 * (non-PHPdoc)
-	 * @see \Communiverse\Genesis\Physics\Units\Unit::getDenominator()
+	 * @see \Communiverse\Genesis\Physics\Units\SI\BaseSIUnit::getDenominator()
 	 */
 	public function getDenominator() {
 		return $this->denominator;
 	}
-
+	
 	/**
 	 * (non-PHPdoc)
-	 * @see \Communiverse\Genesis\Physics\Units\Unit::buildUnit()
+	 * @see \Communiverse\Genesis\Physics\Units\SI\BaseSIUnit::buildUnit()
 	 */
 	public function buildUnit() {
 		$n = "";

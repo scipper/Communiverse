@@ -27,20 +27,39 @@
 
 namespace Communiverse\Genesis\Physics\Units;
 
-use Communiverse\Genesis\Physics\Units\SI\SIUnit;
+use Communiverse\Genesis\Physics\Units\SI\SIUnitCollection;
 
 /**
  * 
  * @author Steffen Kowalski <scipper@myscipper.de>
  *
- * @since 12.09.2015
+ * @since 20.09.2015
  * @namespace Communiverse\Genesis\Physics\Units
  * @package Communiverse\Genesis\Physics\Units
  *
  */
-interface Unit extends SIUnit {
-
+class Gravitation extends BaseUnit {
 	
+	const UNIT = "G";
+	const NUMBER = 6.673E-11;
+	
+
+	/**
+	 * 
+	 * @param SIUnitCollection $siuc
+	 */
+	public function __construct(SIUnitCollection $siuc) {
+		$this->numerator = array(
+			$siuc->get(SIUnitCollection::METRE),
+			$siuc->get(SIUnitCollection::METRE),
+			$siuc->get(SIUnitCollection::METRE),
+		);
+		$this->denominator = array(
+			$siuc->get(SIUnitCollection::KG),
+			$siuc->get(SIUnitCollection::SECOND),
+			$siuc->get(SIUnitCollection::SECOND),
+		);
+	}
 	
 }
 

@@ -53,7 +53,6 @@ class Farad extends BaseUnit {
 			$siuc->get(SIUnitCollection::SECOND),
 			$siuc->get(SIUnitCollection::SECOND),
 			$siuc->get(SIUnitCollection::SECOND),
-			$siuc->get(SIUnitCollection::SECOND),
 			$siuc->get(SIUnitCollection::AMPERE),
 			$siuc->get(SIUnitCollection::AMPERE),
 		);

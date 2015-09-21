@@ -60,6 +60,30 @@ abstract class BaseSIUnit implements SIUnit {
 	 */
 	public function getName() {
 		return get_class($this);
+	}	
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see \Communiverse\Genesis\Physics\Units\SI\SIUnit::getNumerator()
+	 */
+	public function getNumerator() {
+		return array($this);
+	}
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see \Communiverse\Genesis\Physics\Units\SI\SIUnit::getDenominator()
+	 */
+	public function getDenominator() {
+		return array();
+	}
+
+	/**
+	 * (non-PHPdoc)
+	 * @see \Communiverse\Genesis\Physics\Units\SI\SIUnit::buildUnit()
+	 */
+	public function buildUnit() {
+		return $this->getUnit();
 	}
 	
 }

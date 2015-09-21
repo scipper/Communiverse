@@ -27,18 +27,31 @@
 
 namespace Communiverse\Genesis\Physics\Units;
 
+use Communiverse\Genesis\Physics\Units\SI\SIUnitCollection;
+
 /**
  * 
  * @author Steffen Kowalski <scipper@myscipper.de>
  *
- * @since 12.09.2015
+ * @since 20.09.2015
  * @namespace Communiverse\Genesis\Physics\Units
  * @package Communiverse\Genesis\Physics\Units
  *
  */
-class Constants {
+class CalculatedUnit extends BaseUnit {
 	
+	const UNIT = "";
 	
+
+	/**
+	 * 
+	 * @param array $nums
+	 * @param array $denoms
+	 */
+	public function __construct(array $nums = array(), array $denoms = array()) {
+		$this->numerator = $nums;
+		$this->denominator = $denoms;
+	}
 	
 }
 

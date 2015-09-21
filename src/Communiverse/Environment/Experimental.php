@@ -30,6 +30,16 @@ namespace Communiverse\Environment;
 use Communiverse\Environment\Influence\StdInKeys;
 use Communiverse\Tools\Colorizer;
 use Communiverse\Genesis\Maths\Vector3;
+use Communiverse\Genesis\Physics\Units\UnitCollection;
+use Communiverse\Genesis\Physics\Units\SI\SIUnitCollection;
+use Communiverse\Genesis\Physics\Number;
+use Communiverse\Genesis\Physics\Calculator;
+use Communiverse\Genesis\Atoms\AtomCollection;
+use Communiverse\Genesis\Atoms\Particles\Proton;
+use Communiverse\Genesis\Atoms\Particles\Electron;
+use Communiverse\Genesis\Atoms\Particles\Neutron;
+use Communiverse\Genesis\Atoms\Series\SeriesCollection;
+use Communiverse\Tools\Memory;
 
 /**
  * 
@@ -43,13 +53,42 @@ use Communiverse\Genesis\Maths\Vector3;
 class Experimental extends Simpliverse {
 	
 	/**
+	 * 
+	 * @var Colorizer
+	 */
+	protected $colorizer;
+	
+	/**
+	 * 
+	 * @var AtomCollection
+	 */
+	protected $ac;
+	
+	/**
+	 * 
+	 * @var UnitCollection
+	 */
+	protected $uc;
+	
+	/**
 	 * (non-PHPdoc)
 	 * @see \Communiverse\Environment\Simpliverse::init()
 	 */
 	public function init() {
 		system("clear");
 		
+		$memory = new Memory();
+		
+		$this->colorizer = new Colorizer();
+		
 		$this->printStarChart();
+		
+		echo "memory usage: " . $memory->getUsage() . PHP_EOL; 
+		
+		$this->loadCollections();
+		$this->generateParticles();
+		
+		echo "memory usage: " . $memory->getUsage() . PHP_EOL;
 		
 		$this->inputManager->addMapping(
 			new StdInKeys(StdInKeys::KEY_M),
@@ -65,11 +104,6 @@ class Experimental extends Simpliverse {
 	 * @see \Communiverse\Environment\Simpliverse::update()
 	 */
 	public function update($tpf) {
-		$a = new Vector3(3.0, 4.0, 0.0);
-		
-		$b = $a->rotateAngleAxis(M_2_PI, Vector3::AXIS_Z);
-		
-		echo $b->getX() . ":" . $b->getY() . ":" . $b->getZ() . "\r";
 		
 	}
 	
@@ -78,7 +112,7 @@ class Experimental extends Simpliverse {
 	 * @see \Communiverse\Environment\Simpliverse::render()
 	 */
 	public function render($tpf) {
-		//echo number_format($this->runtime, 1) . " s (time travelled in years: " . number_format(($this->runtime / 31536000), 2) . ")\r";		
+		echo number_format($this->runtime, 1) . " s (time travelled in years: " . number_format(($this->runtime / 31536000), 2) . ")\r";		
 	}
 	
 	/**
@@ -86,7 +120,7 @@ class Experimental extends Simpliverse {
 	 */
 	public function massSpeedUp() {
 		if($this->speed > 0) {
-			$this->speed = 31536000;
+			$this->speed += 31536000;
 		} else {
 			$this->speed -= 31536000;
 		}	
@@ -96,29 +130,68 @@ class Experimental extends Simpliverse {
 	 * 
 	 */
 	public function printStarChart() {
-		$colorizer = new Colorizer();
 		for($i = 0; $i < 10000; $i++) {
 			if($i == 5000) {
-				echo $colorizer->getColoredString("✈", Colorizer::FG_LIGHT_GREEN);
+				echo $this->colorizer->getColoredString("✈", Colorizer::FG_LIGHT_GREEN, Colorizer::BG_BLACK);
 			} elseif($i == 7000) {
-				echo $colorizer->getColoredString("ං", Colorizer::FG_GREEN);
+				echo $this->colorizer->getColoredString("ං", Colorizer::FG_GREEN, Colorizer::BG_BLACK);
 			} elseif(rand() % 15 == 0) {
 				if(rand() % 9 == 0) {
-					echo $colorizer->getColoredString(".", Colorizer::FG_BLUE);
+					echo $this->colorizer->getColoredString(".", Colorizer::FG_BLUE, Colorizer::BG_BLACK);
 				} else {
-					echo $colorizer->getColoredString(".", NULL);
+					echo $this->colorizer->getColoredString(".", NULL, Colorizer::BG_BLACK);
 				}
 			} elseif(rand() % 125 == 0) {
 				if(rand() % 7 == 0) {
-					echo $colorizer->getColoredString("⭑", Colorizer::FG_LIGHT_BLUE);
+					echo $this->colorizer->getColoredString("⭑", Colorizer::FG_LIGHT_BLUE, Colorizer::BG_BLACK);
 				} elseif(rand() % 5 == 0) {
-					echo $colorizer->getColoredString("✶", Colorizer::FG_RED);
+					echo $this->colorizer->getColoredString("✶", Colorizer::FG_RED, Colorizer::BG_BLACK);
 				} else {
-					echo $colorizer->getColoredString("☀", Colorizer::FG_YELLOW);
+					echo $this->colorizer->getColoredString("☀", Colorizer::FG_YELLOW, Colorizer::BG_BLACK);
 				}
 				
 			} else {
-				echo $colorizer->getColoredString(" ");
+				echo $this->colorizer->getColoredString(" ", NULL, Colorizer::BG_BLACK);
+			}
+		}
+		echo PHP_EOL;
+	}
+	
+	/**
+	 * 
+	 */
+	public function loadCollections() {
+		$this->ac = new AtomCollection(
+			new Proton(),
+			new Electron(),
+			new Neutron(),
+			new SeriesCollection()
+		);
+		
+		$this->uc = new UnitCollection(
+			new SIUnitCollection()
+		);
+	}
+	
+	/**
+	 * 
+	 */
+	public function generateParticles() {
+		$particles = array();
+		$size = 100;
+		$counter = 0;
+		$percent = 0;
+		for($z = 0; $z < $size; $z++) {
+			for($y = 0; $y < $size; $y++) {
+				for($x = 0; $x < $size; $x++) {
+					$particles[$z][$y][$x] = $this->ac->get(AtomCollection::HYDROGEN);
+					
+					$counter++;
+					if($counter % (pow($size, 3) / 100) == 0) {
+						$percent += 1;
+						echo "particle generation completet: " . $percent . " %\r";
+					}
+				}
 			}
 		}
 		echo PHP_EOL;
