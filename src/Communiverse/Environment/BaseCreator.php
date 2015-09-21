@@ -31,6 +31,7 @@ use Communiverse\Tools\Timer;
 use Communiverse\Environment\Influence\InputManager;
 use Communiverse\Environment\Influence\StdInKeys;
 use Communiverse\Environment\Influence\KeyMapper;
+use Communiverse\Tools\Render\Renderer;
 
 /**
  * 
@@ -91,12 +92,18 @@ abstract class BaseCreator implements Creator {
 	 */
 	protected $endtime;
 	
+	/**
+	 * 
+	 * @var Renderer
+	 */
+	protected $renderer;
+	
 
 	/**
 	 * 
 	 * @param InputManager $inputManager
 	 */
-	public function __construct(InputManager $inputManager, Timer $timer) {
+	public function __construct(InputManager $inputManager, Timer $timer, Renderer $renderer) {
 		$this->running = false;
 		$this->speed = 1.0;
 		$this->paused = false;
@@ -105,6 +112,7 @@ abstract class BaseCreator implements Creator {
 		$this->starttime = new \DateTime("now");
 		$this->runtime = 0.0;
 		$this->endtime = new \DateTime("now");
+		$this->renderer = $renderer;
 	}
 
 	/**
@@ -167,6 +175,8 @@ abstract class BaseCreator implements Creator {
 	public function coreUpdate($tpf) {
 		$this->inputManager->listen($tpf);
 		
+		$this->renderer->clear();
+		
 		if(!$this->paused) {
 			$this->runtime += $tpf * $this->speed;
 		}
@@ -191,7 +201,7 @@ abstract class BaseCreator implements Creator {
 	 * @see \Communiverse\Environment\Creator::speedUp()
 	 */
 	public function speedUp() {
-		$this->speed++;
+		$this->speed += 0.1;
 		echo "\nspeed up. speed is now " . $this->speed . PHP_EOL;
 	}
 
@@ -201,7 +211,7 @@ abstract class BaseCreator implements Creator {
 	 */
 	public function speedDown() {
 // 		if($this->speed > 1) {
-			$this->speed--;
+			$this->speed -= 0.1;
 // 		}
 		echo "\nspeed down. speed is now " . $this->speed . PHP_EOL;
 	}

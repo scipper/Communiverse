@@ -40,6 +40,7 @@ use Communiverse\Genesis\Atoms\Particles\Electron;
 use Communiverse\Genesis\Atoms\Particles\Neutron;
 use Communiverse\Genesis\Atoms\Series\SeriesCollection;
 use Communiverse\Tools\Memory;
+use Communiverse\Genesis\Maths\Math;
 
 /**
  * 
@@ -71,24 +72,55 @@ class Experimental extends Simpliverse {
 	protected $uc;
 	
 	/**
+	 * 
+	 * @var Memory
+	 */
+	protected $mem;
+	
+	/**
+	 * 
+	 * @var Vector3
+	 */
+	protected $vec;
+	
+	/**
+	 * 
+	 * @var Vector3
+	 */
+	protected $rvec;
+	
+	/**
+	 * 
+	 * @var float
+	 */
+	protected $angle;
+	
+	/**
+	 * 
+	 * @var integer
+	 */
+	protected $vsize;
+	
+	/**
 	 * (non-PHPdoc)
 	 * @see \Communiverse\Environment\Simpliverse::init()
 	 */
 	public function init() {
 		system("clear");
 		
-		$memory = new Memory();
-		
+		$this->mem = new Memory();
 		$this->colorizer = new Colorizer();
+		$this->vsize = 10;
+		$this->vec = new Vector3($this->vsize, 0, 0);
 		
 		$this->printStarChart();
 		
-		echo "memory usage: " . $memory->getUsage() . PHP_EOL; 
+		echo "memory usage: " . $this->mem->getUsage() . PHP_EOL; 
 		
 		$this->loadCollections();
-		$this->generateParticles();
+// 		$this->generateParticles();
 		
-		echo "memory usage: " . $memory->getUsage() . PHP_EOL;
+		echo "memory usage: " . $this->mem->getUsage() . PHP_EOL;
 		
 		$this->inputManager->addMapping(
 			new StdInKeys(StdInKeys::KEY_M),
@@ -104,7 +136,11 @@ class Experimental extends Simpliverse {
 	 * @see \Communiverse\Environment\Simpliverse::update()
 	 */
 	public function update($tpf) {
-		
+		$this->angle += M_PI * $tpf * $this->speed;
+		$this->rvec = $this->vec->rotateAngleAxis(
+			Math::degreeToRadian($this->angle), 
+			Vector3::AXIS_Z
+		);
 	}
 	
 	/**
@@ -112,7 +148,40 @@ class Experimental extends Simpliverse {
 	 * @see \Communiverse\Environment\Simpliverse::render()
 	 */
 	public function render($tpf) {
-		echo number_format($this->runtime, 1) . " s (time travelled in years: " . number_format(($this->runtime / 31536000), 2) . ")\r";		
+		$x = intval($this->rvec->getX());
+		if($x > $this->vsize) {
+			$x = $this->vsize;
+		} elseif($x < -$this->vsize) {
+			$x = -$this->vsize;
+		}
+		$y = intval($this->rvec->getY());
+		if($y > $this->vsize) {
+			$y = $this->vsize;
+		} elseif($y < -$this->vsize) {
+			$y = -$this->vsize;
+		}
+// 		echo number_format($this->runtime, 1) . " s (time travelled in years: " . number_format(($this->runtime / 31536000), 2) . ")\r";
+		for($i = -($this->vsize+2); $i <= $this->vsize+2; $i++) {
+			for($j = -($this->vsize+2); $j <= $this->vsize+2; $j++) {
+				if($i == $x && $j == $y) {
+					echo "o ";
+					continue;
+				}
+				if($i == 0 || $i == ($this->vsize+3)) {
+					echo "_ ";
+				} elseif($j == 0 || $j == ($this->vsize+3)) {
+					echo "|";
+				} else {
+					echo "  ";
+					continue;
+				}
+			}
+			
+			echo PHP_EOL;
+		}
+		echo $this->rvec->getX() . PHP_EOL;
+		echo $this->angle . PHP_EOL;
+// 		echo $this->vec->getX() . " : " . $this->vec->getY() . " : " . $this->vec->getZ() . PHP_EOL;
 	}
 	
 	/**
