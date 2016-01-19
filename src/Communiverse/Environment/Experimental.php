@@ -118,7 +118,7 @@ class Experimental extends Simpliverse {
 		echo "memory usage: " . $this->mem->getUsage() . PHP_EOL; 
 		
 		$this->loadCollections();
-// 		$this->generateParticles();
+ 		$this->generateParticles();
 		
 		echo "memory usage: " . $this->mem->getUsage() . PHP_EOL;
 		
@@ -136,6 +136,7 @@ class Experimental extends Simpliverse {
 	 * @see \Communiverse\Environment\Simpliverse::update()
 	 */
 	public function update($tpf) {
+return;
 		$this->angle += M_PI * $tpf * $this->speed;
 		$this->rvec = $this->vec->rotateAngleAxis(
 			Math::degreeToRadian($this->angle), 
@@ -148,6 +149,7 @@ class Experimental extends Simpliverse {
 	 * @see \Communiverse\Environment\Simpliverse::render()
 	 */
 	public function render($tpf) {
+		return;
 		$x = intval($this->rvec->getX());
 		if($x > $this->vsize) {
 			$x = $this->vsize;

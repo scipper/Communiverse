@@ -175,7 +175,7 @@ abstract class BaseCreator implements Creator {
 	public function coreUpdate($tpf) {
 		$this->inputManager->listen($tpf);
 		
-		$this->renderer->clear();
+		//$this->renderer->clear();
 		
 		if(!$this->paused) {
 			$this->runtime += $tpf * $this->speed;
